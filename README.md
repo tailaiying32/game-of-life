@@ -9,3 +9,9 @@ The universe of the Game of Life is an infinite, two-dimensional orthogonal grid
 The initial pattern constitutes the seed of the system. The first generation is created by applying the above rules simultaneously to every cell in the seed, live or dead; births and deaths occur simultaneously, and the discrete moment at which this happens is sometimes called a tick. Each generation is a pure function of the preceding one. The rules continue to be applied repeatedly to create further generations.  
   
 _"Conway's Game of Life", (2023), Retrieved August 20, 2024 from https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life_ 
+
+## Features
+* Simulates the evolution of 2-D cells following the rules of the Game of Life
+* Allow the user to control the initial state of the grid by clicking on cells
+* Provides controls to start, stop, reset, or randomize the grid
+* Displays the current generation and number of living cells
