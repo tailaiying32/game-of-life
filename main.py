@@ -24,15 +24,15 @@ class GameOfLife(tk.Tk):
         self.resolution = resolution
         self.scale = self.grid_size / self.resolution
 
-        self.geometry(str(self.grid_size + 400) + 'x' + str(self.grid_size + 200))
+        self.geometry(str(self.grid_size) + 'x' + str(self.grid_size + 200))
         self.canvas =tk.Canvas(self, width=self.grid_size, height=self.grid_size, background='grey5')
         self.canvas.pack()
 
         self.grid = np.zeros((self.resolution, self.resolution))
 
-        for x in range(0, self.resolution):
-            for y in range(0, self.resolution):
-                self.grid[x][y] = random.randint(0, 1)
+        # for x in range(0, self.resolution):
+        #     for y in range(0, self.resolution):
+        #         self.grid[x][y] = random.randint(0, 1)
 
         self.running = False
 
@@ -59,13 +59,16 @@ class GameOfLife(tk.Tk):
                 if self.grid[x][y] == 1:
                     self.canvas.create_rectangle(scaled_x, scaled_y, scaled_x + self.scale, scaled_y + self.scale, fill='grey95', outline='grey50')
 
+
     def on_click(self, event):
         # allow user to make their own starting pattern
-        gridx = math.floor((event.y/self.grid_size)*self.resolution)
-        gridy = math.floor((event.x/self.grid_size)*self.resolution)
+        x = math.floor((event.y/self.grid_size)*self.resolution)
+        y = math.floor((event.x/self.grid_size)*self.resolution)
 
-        self.grid[gridx][gridy] = 1
-        self.canvas.create_rectangle(gridx, gridy, gridx + self.scale, gridy + self.scale, fill='grey95', outline='grey50')
+        if 0 <= x < self.resolution and 0 <= y < self.resolution:
+            self.grid[x][y] = 1
+            self.canvas.create_rectangle(y * self.scale, x * self.scale, (y + 1) * self.scale, (x + 1) * self.scale, fill='grey95', outline='grey50')
+
 
     def start_game(self):
         # start the game by generating the board and updating
@@ -73,6 +76,9 @@ class GameOfLife(tk.Tk):
         self.after(17, self.update_board)
 
     def random_game(self):
+        for x in range(0, self.resolution):
+            for y in range(0, self.resolution):
+                self.grid[x][y] = random.randint(0, 1)
         self.generate_board()
 
     def stop_game(self):
@@ -82,9 +88,7 @@ class GameOfLife(tk.Tk):
     def reset_game(self):
         #reset the game by clearing board
         self.canvas.delete('all')
-        for x in range(0, self.resolution):
-            for y in range(0, self.resolution):
-                self.grid[x][y] = random.randint(0, 1)
+        
 
     def count_neighbors(self, x, y):
         # count the number of live neighbors
