@@ -29,10 +29,7 @@ class GameOfLife(tk.Tk):
         self.canvas.pack()
 
         self.grid = np.zeros((self.resolution, self.resolution))
-
-        # for x in range(0, self.resolution):
-        #     for y in range(0, self.resolution):
-        #         self.grid[x][y] = random.randint(0, 1)
+        
 
         self.running = False
 
@@ -88,6 +85,8 @@ class GameOfLife(tk.Tk):
     def reset_game(self):
         #reset the game by clearing board
         self.canvas.delete('all')
+        self.grid = np.zeros((self.resolution, self.resolution))
+
         
 
     def count_neighbors(self, x, y):
@@ -135,7 +134,7 @@ class GameOfLife(tk.Tk):
             self.canvas.delete('all')
             self.grid = self.apply_rules()
             self.generate_board()
-            self.after(17, self.update_board)
+            self.after(100, self.update_board)
 
 
 if __name__ == "__main__":
