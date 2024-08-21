@@ -14,4 +14,4 @@ _"Conway's Game of Life", (2023), Retrieved August 20, 2024 from https://en.wiki
 * Simulates the evolution of 2-D cells following the rules of the Game of Life
 * Allow the user to control the initial state of the grid by clicking on cells
 * Provides controls to start, stop, reset, or randomize the grid
-* Displays the current generation and number of living cells
+
